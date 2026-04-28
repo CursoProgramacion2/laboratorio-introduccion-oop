@@ -122,7 +122,7 @@ Como **bibliotecario**, quiero **generar multas por retraso en la devolución**,
 
 ## Ejemplo de Diagrama de Clases (conceptual)
 
-- estudiante
+- Estudiante
   - id
   - nombre
   - tipo (estudiante/docente)
