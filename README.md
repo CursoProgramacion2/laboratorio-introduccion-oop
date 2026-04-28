@@ -18,7 +18,7 @@ El sistema deberá permitir, entre otras funcionalidades:
 - Gestionar multas o sanciones por retrasos.
 - Consultar la disponibilidad de libros en tiempo real.
 
---
+---
 
 ## Proposito de la activiidad
 
@@ -29,3 +29,195 @@ A partir de este contexto, los estudiantes deberán analizar la problemática y 
 - Planeación de Sprints, definiendo el número de iteraciones y las historias de usuario a desarrollar en cada una.
 - Diagrama de clases, basado en el análisis de las historias de usuario, que represente la estructura del sistema.
 
+---
+
+## Guia introductoria
+
+### Ejemplo de Historias de Usuario (HU)
+
+#### HU01 – Registrar usuario
+
+Como **bibliotecario**, quiero **registrar nuevos estudiantes en el sistema**, para **permitirles acceder a los servicios de la biblioteca**.
+
+#### Criterios de aceptación (Gherkin)
+
+- **Dado** que el bibliotecario está en el sistema **cuando** ingresa los datos del usuario correctamente, **entonces** el sistema registra el usuario exitosamente
+- **Dado** que falta información obligatoria **cuando** intenta registrar el usuario, **entonces** el sistema muestra un mensaje de error
+
+#### HU02 – Consultar catálogo de libros
+
+Como **estudiante**, quiero **buscar libros por título, autor o categoría**, para **encontrar material de interés**.
+
+#### Criterios de aceptación:
+
+- **Dado** que el usuario accede al catálogo **cuando** ingresa un criterio de búsqueda, **entonces** el sistema muestra los libros relacionados.
+
+#### HU03 – Prestar libro
+
+Como **bibliotecario**, quiero **registrar el préstamo de un libro**, para llevar control de los libros entregados.
+
+#### Criterios de aceptación
+
+- **Dado** que el libro está disponible **cuando** se registra el préstamo, **entonces** el sistema cambia el estado del libro a “prestado”.
+- **Dado** que el libro no está disponible **cuando** se intenta prestar, **entonces** el sistema muestra una alerta.
+
+#### HU04 – Devolver libro
+
+Como **bibliotecario**, quiero **registrar la devolución de un libro**, para **actualizar su disponibilidad**.
+
+#### Criterios de aceptación:
+
+- Dado que el libro fue prestado **cuando** se registra la devolución, **entonces** el sistema actualiza su estado a “disponible”.
+
+#### HU05 – Reservar libro
+
+Como **estudiante**, quiero **reservar un libro**, para **asegurar su disponibilidad cuando esté libre**.
+
+#### Criterios de aceptación:
+
+- Dado que el libro no está disponible **cuando** el usuario realiza una reserva, **entonces** el sistema registra la reserva correctamente.
+
+#### HU06 – Generar multa
+
+Como **bibliotecario**, quiero **generar multas por retraso en la devolución**, para **fomentar la responsabilidad en los estudiantes**.
+
+#### Criterios de aceptación:
+
+- **Dado** que un libro se devuelve fuera de la fecha **cuando** el sistema calcula el retraso, **entonces** se genera una multa automáticamente.
+
+---
+
+### Ejemplo de Product Backlog
+
+| Prioridad | ID   | Historia de Usuario | Valor |
+| --------- | ---- | ------------------- | ----- |
+| Alta      | HU01 | Registrar usuario   | Alta  |
+| Alta      | HU03 | Prestar libro       | Alta  |
+| Alta      | HU04 | Devolver libro      | Alta  |
+| Alta      | HU02 | Consultar catálogo  | Alta  |
+| Media     | HU05 | Reservar libro      | Media |
+| Media     | HU06 | Generar multa       | Media |
+
+> MVP sugerido: HU01, HU02, HU03, HU04
+
+---
+
+## Ejemplo de Planeación de Sprints
+
+### Sprint 1 (Base del sistema)
+
+- HU01 – Registrar usuario.
+- HU02 – Consultar catálogo.
+
+### Sprint 2 (Operaciones principales)
+
+- HU03 – Prestar libro.
+- HU04 – Devolver libro.
+
+### Sprint 3 (Funciones adicionales)
+- HU05 – Reservar libro.
+- HU06 – Generar multa.
+
+---
+
+## Ejemplo de Diagrama de Clases (conceptual)
+
+- Usuario
+  - id
+  - nombre
+  - tipo (estudiante/docente)
+
+- Libro
+  - id
+  - título
+  - autor
+  - estado
+
+- Préstamo
+  - fechaInicio
+  - fechaFin
+  - estado
+  - Reserva
+  - fecha
+  - estado
+
+- Multa
+  - valor
+  - fecha
+  - estado
+
+> Relaciones clave:
+> - Un Estudiante puede tener muchos Préstamos
+> - Un Libro puede estar asociado a un Préstamo
+> - Un Estudiante puede tener Multas
+
+```
+@startuml
+
+class Usuario {
+  - id: int
+  - nombre: String
+  - email: String
+  - tipo: String
+  + registrarse()
+  + consultarHistorial()
+}
+
+class Libro {
+  - id: int
+  - titulo: String
+  - autor: String
+  - categoria: String
+  - estado: String
+  + consultarDisponibilidad()
+}
+
+class Prestamo {
+  - id: int
+  - fechaInicio: Date
+  - fechaFin: Date
+  - estado: String
+  + registrarPrestamo()
+  + registrarDevolucion()
+}
+
+class Reserva {
+  - id: int
+  - fecha: Date
+  - estado: String
+  + crearReserva()
+  + cancelarReserva()
+}
+
+class Multa {
+  - id: int
+  - valor: double
+  - fechaGeneracion: Date
+  - estado: String
+  + calcularMulta()
+  + pagarMulta()
+}
+
+class Bibliotecario {
+  + registrarUsuario()
+  + gestionarPrestamo()
+  + generarMulta()
+}
+
+' Relaciones
+Usuario "1" -- "0..*" Prestamo : realiza
+Libro "1" -- "0..*" Prestamo : es prestado en
+
+Usuario "1" -- "0..*" Reserva : realiza
+Libro "1" -- "0..*" Reserva : es reservado en
+
+Usuario "1" -- "0..*" Multa : recibe
+
+Bibliotecario ..> Usuario : gestiona
+Bibliotecario ..> Prestamo : administra
+Bibliotecario ..> Multa : genera
+
+Prestamo "1" -- "0..1" Multa : genera
+
+@enduml
+```
