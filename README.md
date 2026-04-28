@@ -4,15 +4,15 @@ Desarrollar un laboratorio de Programación Orientada a Objetos que permita comp
 
 ## Enunciado del problema
 
-La biblioteca universitaria XYZ ha experimentado un crecimiento significativo en la cantidad de estudiantes, docentes y material bibliográfico disponible. Actualmente, muchos de sus procesos se realizan de manera manual o con herramientas poco integradas, lo que ha generado inconvenientes como pérdida de información, dificultades en el control de préstamos, demoras en la atención a los usuarios y falta de trazabilidad sobre el estado de los libros.
+La biblioteca universitaria XYZ ha experimentado un crecimiento significativo en la cantidad de estudiantes, docentes y material bibliográfico disponible. Actualmente, muchos de sus procesos se realizan de manera manual o con herramientas poco integradas, lo que ha generado inconvenientes como pérdida de información, dificultades en el control de préstamos, demoras en la atención a los estudiantes y falta de trazabilidad sobre el estado de los libros.
 
-Además del préstamo de libros físicos, la biblioteca ofrece servicios como reservas, renovación de préstamos, consulta del catálogo, y gestión de sanciones por retrasos en la devolución. Sin embargo, estos servicios no están centralizados en un sistema eficiente, lo que afecta la calidad del servicio y la experiencia de los usuarios.
+Además del préstamo de libros físicos, la biblioteca ofrece servicios como reservas, renovación de préstamos, consulta del catálogo, y gestión de sanciones por retrasos en la devolución. Sin embargo, estos servicios no están centralizados en un sistema eficiente, lo que afecta la calidad del servicio y la experiencia de los estudiantes.
 
-Ante esta situación, la universidad ha decidido desarrollar un sistema de información que permita gestionar de manera integral la biblioteca, facilitando el control, organización y seguimiento del material bibliográfico, así como la administración de los servicios ofrecidos a los usuarios.
+Ante esta situación, la universidad ha decidido desarrollar un sistema de información que permita gestionar de manera integral la biblioteca, facilitando el control, organización y seguimiento del material bibliográfico, así como la administración de los servicios ofrecidos a los estudiantes.
 
 El sistema deberá permitir, entre otras funcionalidades:
 
-- Registrar y gestionar libros, usuarios y categorías.
+- Registrar y gestionar libros, estudiantes y categorías.
 - Controlar el préstamo y devolución de libros.
 - Permitir la reserva y renovación de material bibliográfico.
 - Gestionar multas o sanciones por retrasos.
@@ -24,25 +24,25 @@ El sistema deberá permitir, entre otras funcionalidades:
 
 A partir de este contexto, los estudiantes deberán analizar la problemática y diseñar una solución siguiendo un enfoque ágil, generando los siguientes artefactos:
 
-- Historias de usuario redactadas con la estructura ```Como [rol], quiero [funcionalidad], para [beneficio]```, aplicando criterios INVEST y definiendo criterios de aceptación mediante la técnica Gherkin (Given–When–Then).
+- Historias de estudiante redactadas con la estructura ```Como [rol], quiero [funcionalidad], para [beneficio]```, aplicando criterios INVEST y definiendo criterios de aceptación mediante la técnica Gherkin (Given–When–Then).
 - Product Backlog priorizado, identificando las historias necesarias para construir un Producto Mínimo Viable (MVP).
-- Planeación de Sprints, definiendo el número de iteraciones y las historias de usuario a desarrollar en cada una.
-- Diagrama de clases, basado en el análisis de las historias de usuario, que represente la estructura del sistema.
+- Planeación de Sprints, definiendo el número de iteraciones y las historias de estudiante a desarrollar en cada una.
+- Diagrama de clases, basado en el análisis de las historias de estudiante, que represente la estructura del sistema.
 
 ---
 
 ## Guia introductoria
 
-### Ejemplo de Historias de Usuario (HU)
+### Ejemplo de Historias de estudiante (HU)
 
-#### HU01 – Registrar usuario
+#### HU01 – Registrar estudiante
 
 Como **bibliotecario**, quiero **registrar nuevos estudiantes en el sistema**, para **permitirles acceder a los servicios de la biblioteca**.
 
 #### Criterios de aceptación (Gherkin)
 
-- **Dado** que el bibliotecario está en el sistema **cuando** ingresa los datos del usuario correctamente, **entonces** el sistema registra el usuario exitosamente
-- **Dado** que falta información obligatoria **cuando** intenta registrar el usuario, **entonces** el sistema muestra un mensaje de error
+- **Dado** que el bibliotecario está en el sistema **cuando** ingresa los datos del estudiante correctamente, **entonces** el sistema registra el estudiante exitosamente
+- **Dado** que falta información obligatoria **cuando** intenta registrar el estudiante, **entonces** el sistema muestra un mensaje de error
 
 #### HU02 – Consultar catálogo de libros
 
@@ -50,7 +50,7 @@ Como **estudiante**, quiero **buscar libros por título, autor o categoría**, p
 
 #### Criterios de aceptación:
 
-- **Dado** que el usuario accede al catálogo **cuando** ingresa un criterio de búsqueda, **entonces** el sistema muestra los libros relacionados.
+- **Dado** que el estudiante accede al catálogo **cuando** ingresa un criterio de búsqueda, **entonces** el sistema muestra los libros relacionados.
 
 #### HU03 – Prestar libro
 
@@ -75,7 +75,7 @@ Como **estudiante**, quiero **reservar un libro**, para **asegurar su disponibil
 
 #### Criterios de aceptación:
 
-- Dado que el libro no está disponible **cuando** el usuario realiza una reserva, **entonces** el sistema registra la reserva correctamente.
+- Dado que el libro no está disponible **cuando** el estudiante realiza una reserva, **entonces** el sistema registra la reserva correctamente.
 
 #### HU06 – Generar multa
 
@@ -89,9 +89,9 @@ Como **bibliotecario**, quiero **generar multas por retraso en la devolución**,
 
 ### Ejemplo de Product Backlog
 
-| Prioridad | ID   | Historia de Usuario | Valor |
+| Prioridad | ID   | Historia de estudiante | Valor |
 | --------- | ---- | ------------------- | ----- |
-| Alta      | HU01 | Registrar usuario   | Alta  |
+| Alta      | HU01 | Registrar estudiante   | Alta  |
 | Alta      | HU03 | Prestar libro       | Alta  |
 | Alta      | HU04 | Devolver libro      | Alta  |
 | Alta      | HU02 | Consultar catálogo  | Alta  |
@@ -106,7 +106,7 @@ Como **bibliotecario**, quiero **generar multas por retraso en la devolución**,
 
 ### Sprint 1 (Base del sistema)
 
-- HU01 – Registrar usuario.
+- HU01 – Registrar estudiante.
 - HU02 – Consultar catálogo.
 
 ### Sprint 2 (Operaciones principales)
@@ -122,7 +122,7 @@ Como **bibliotecario**, quiero **generar multas por retraso en la devolución**,
 
 ## Ejemplo de Diagrama de Clases (conceptual)
 
-- Usuario
+- estudiante
   - id
   - nombre
   - tipo (estudiante/docente)
@@ -154,7 +154,7 @@ Como **bibliotecario**, quiero **generar multas por retraso en la devolución**,
 ```
 @startuml
 
-class Usuario {
+class estudiante {
   - id: int
   - nombre: String
   - email: String
@@ -199,21 +199,21 @@ class Multa {
 }
 
 class Bibliotecario {
-  + registrarUsuario()
+  + registrarestudiante()
   + gestionarPrestamo()
   + generarMulta()
 }
 
 ' Relaciones
-Usuario "1" -- "0..*" Prestamo : realiza
+estudiante "1" -- "0..*" Prestamo : realiza
 Libro "1" -- "0..*" Prestamo : es prestado en
 
-Usuario "1" -- "0..*" Reserva : realiza
+estudiante "1" -- "0..*" Reserva : realiza
 Libro "1" -- "0..*" Reserva : es reservado en
 
-Usuario "1" -- "0..*" Multa : recibe
+estudiante "1" -- "0..*" Multa : recibe
 
-Bibliotecario ..> Usuario : gestiona
+Bibliotecario ..> estudiante : gestiona
 Bibliotecario ..> Prestamo : administra
 Bibliotecario ..> Multa : genera
 
